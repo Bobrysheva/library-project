@@ -4,11 +4,10 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
-@Setter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Genre {
 
     @Id
