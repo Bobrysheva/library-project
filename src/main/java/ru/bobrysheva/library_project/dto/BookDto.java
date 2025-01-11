@@ -4,7 +4,9 @@ import lombok.*;
 
 
 @Builder
-@Getter
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class BookDto {
     private Long id;
     private String name;

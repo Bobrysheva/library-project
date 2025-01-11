@@ -4,8 +4,10 @@ import lombok.*;
 
 import java.util.List;
 
-@Getter
 @Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class AuthorDto {
     private Long id;
     private String name;
