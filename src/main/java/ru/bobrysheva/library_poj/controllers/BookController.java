@@ -1,5 +1,6 @@
 package ru.bobrysheva.library_poj.controllers;
 
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,5 +17,9 @@ public class BookController {
     @GetMapping("/book")
     BookDto getBookByName(@RequestParam("name") String name) {
         return bookService.getByNameV1(name);
+    }
+    @GetMapping("/book/v2")
+    BookDto getBookByNameV2(@RequestParam("name") String name) {
+        return bookService.getByNameV2(name);
     }
 }
