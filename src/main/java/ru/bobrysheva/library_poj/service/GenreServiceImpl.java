@@ -29,7 +29,7 @@ public class GenreServiceImpl implements GenreService {
                 .stream().map(book -> BookDto.builder()
                         .id(book.getId())
                         .name(book.getName())
-                        .genre(book.getGenre().getName())
+//                        .genre(book.getGenre().getName())
                         .authors(book.getAuthors().stream().map(author -> AuthorShortDto.builder()
                                 .name(author.getName())
                                 .surname(author.getSurname())

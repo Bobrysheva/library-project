@@ -20,7 +20,7 @@ public class BookServiceImpl implements BookService {
     private BookDto convertEntityToDto(Book book) {
         return BookDto.builder()
                 .id(book.getId())
-                .genre(book.getGenre().getName())
+//                .genre(book.getGenre().getName())
                 .name(book.getName())
                 .build();
     }
