@@ -3,7 +3,6 @@ package ru.bobrysheva.library_poj.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.bobrysheva.library_poj.dto.AuthorDto;
-import ru.bobrysheva.library_poj.dto.AuthorShortDto;
 import ru.bobrysheva.library_poj.dto.BookDto;
 import ru.bobrysheva.library_poj.dto.GenreDto;
 import ru.bobrysheva.library_poj.entity.Genre;
@@ -29,8 +28,7 @@ public class GenreServiceImpl implements GenreService {
                 .stream().map(book -> BookDto.builder()
                         .id(book.getId())
                         .name(book.getName())
-//                        .genre(book.getGenre().getName())
-                        .authors(book.getAuthors().stream().map(author -> AuthorShortDto.builder()
+                        .authors(book.getAuthors().stream().map(author -> AuthorDto.builder()
                                 .name(author.getName())
                                 .surname(author.getSurname())
                                 .build()).toList())
