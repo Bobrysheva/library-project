@@ -1,8 +1,9 @@
 package ru.bobrysheva.library_poj.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.bobrysheva.library_poj.dto.AuthorDto;
+import ru.bobrysheva.library_poj.dto.AuthorShortDto;
 import ru.bobrysheva.library_poj.dto.BookDto;
 import ru.bobrysheva.library_poj.dto.GenreDto;
 import ru.bobrysheva.library_poj.entity.Genre;
@@ -15,9 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class GenreServiceImpl implements GenreService {
 
-    @Autowired
     private final GenreRepository genreRepository;
-
 
     @Override
     public GenreDto getGenreById(Long id) {
@@ -31,8 +30,12 @@ public class GenreServiceImpl implements GenreService {
                         .id(book.getId())
                         .name(book.getName())
                         .genre(book.getGenre().getName())
-//                      .authors(book.getAuthors().stream().toString())
-                .build()).toList();
+                        .authors(book.getAuthors().stream().map(author -> AuthorShortDto.builder()
+                                .name(author.getName())
+                                .surname(author.getSurname())
+                                .build()).toList())
+
+                        .build()).toList();
 
 
         return GenreDto.builder().id(genre.getId()).name(genre.getName()).books(bookDtoList).build();
