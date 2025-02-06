@@ -20,9 +20,17 @@ public class AuthorController {
     AuthorDto getAuthorById(@PathVariable("id") Long id) {
         return authorService.getAuthorById(id);
     }
-    @GetMapping ("/authors/by-name/{name}")
-    List <AuthorDto> findAuthorsByName(@PathVariable("name") String name) {
-        return authorService.findAuthorsByName(name);
+    @GetMapping ("/authors/name-1/{name}")
+    List <AuthorDto> findAuthorsByName1(@PathVariable("name") String name) {
+        return authorService.findAuthorsByNameV1(name);
+    }
+    @GetMapping ("/authors/name-2/{name}")
+    List <AuthorDto> findAuthorsByName2 (@PathVariable("name") String name) {
+        return authorService.findAuthorsByNameV2(name);
+    }
+    @GetMapping ("/authors/name-3/{surname}")
+    List <AuthorDto> findAuthorsByName3 (@PathVariable("surname") String surname) {
+        return authorService.findAuthorsBySurnameV3(surname);
     }
     @GetMapping ("/authors")
     List <AuthorDto> findByBooks_Id (@RequestParam Long id) {

@@ -1,6 +1,11 @@
 package ru.bobrysheva.library_poj.service;
 
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import ru.bobrysheva.library_poj.dto.AuthorDto;
 import ru.bobrysheva.library_poj.dto.BookDto;
@@ -8,6 +13,7 @@ import ru.bobrysheva.library_poj.entity.Author;
 import ru.bobrysheva.library_poj.repository.AuthorRepository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -23,8 +29,28 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
-    public List <AuthorDto> findAuthorsByName(String name) {
+    public List <AuthorDto> findAuthorsByNameV1(String name) {
         List <Author> authors = authorRepository.findAuthorsByName(name);
+        return authors.stream().map(this::convertToDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<AuthorDto> findAuthorsByNameV2(String name) {
+        Optional<Author> authors = authorRepository.findAuthorByNameBySql(name);
+        return authors.stream().map(this::convertToDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<AuthorDto> findAuthorsBySurnameV3(String surname) {
+        Specification <Author> specification = Specification.where(new Specification<Author>() {
+            @Override
+            public Predicate toPredicate(Root<Author> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+                return cb.equal(root.get("surname"), surname);
+            }
+        });
+        Optional<Author> authors = authorRepository.findAuthorBySurnameBySql(surname);
         return authors.stream().map(this::convertToDto)
                 .collect(Collectors.toList());
     }

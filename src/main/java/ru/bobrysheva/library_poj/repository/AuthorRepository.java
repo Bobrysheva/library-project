@@ -1,6 +1,8 @@
 package ru.bobrysheva.library_poj.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import ru.bobrysheva.library_poj.dto.AuthorDto;
 import ru.bobrysheva.library_poj.entity.Author;
@@ -10,9 +12,14 @@ import java.util.Optional;
 
 
 @Repository
-public interface AuthorRepository extends JpaRepository<Author,Long> {
+public interface AuthorRepository extends JpaRepository<Author,Long>, JpaSpecificationExecutor<Author> {
 
     List <Author> findAuthorsByName (String name);
     List <Author> findByBooks_Id (Long bookId);
 
+    @Query(nativeQuery = true, value = "SELECT * FROM AUTHOR WHERE name = ?")
+    Optional<Author> findAuthorByNameBySql(String name);
+
+    @Query(nativeQuery = true, value = "SELECT * FROM AUTHOR WHERE surname = ?")
+    Optional<Author> findAuthorBySurnameBySql(String surname);
 }

@@ -9,7 +9,9 @@ public interface AuthorService {
 
    AuthorDto getAuthorById (Long id);
 
-   List<AuthorDto> findAuthorsByName (String name);
+   List<AuthorDto> findAuthorsByNameV1(String name);
+   List<AuthorDto> findAuthorsByNameV2(String name);
+   List<AuthorDto> findAuthorsBySurnameV3(String surname);
 
    List<AuthorDto> findByBooks_Id (Long bookId);
 }

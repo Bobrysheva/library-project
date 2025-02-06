@@ -22,4 +22,8 @@ public class BookController {
     BookDto getBookByNameV2(@RequestParam("name") String name) {
         return bookService.getByNameV2(name);
     }
+    @GetMapping("/book/v3")
+    BookDto getBookByNameV3(@RequestParam("name") String name) {
+        return bookService.getByNameV3(name);
+    }
 }
