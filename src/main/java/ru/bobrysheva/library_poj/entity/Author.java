@@ -1,10 +1,7 @@
 package ru.bobrysheva.library_poj.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Set;
 
@@ -18,10 +15,10 @@ public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
-
+    @Setter
     @Column(nullable = false)
     public String name;
-
+    @Setter
     @Column(nullable = false)
     public String surname;
 

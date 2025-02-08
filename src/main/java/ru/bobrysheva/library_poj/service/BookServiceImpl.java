@@ -7,15 +7,28 @@ import jakarta.persistence.criteria.Root;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import java.util.List;
+
+import ru.bobrysheva.library_poj.dto.AuthorDto;
+import ru.bobrysheva.library_poj.dto.BookCreateDto;
 import ru.bobrysheva.library_poj.dto.BookDto;
+import ru.bobrysheva.library_poj.dto.BookUpdateDto;
+import ru.bobrysheva.library_poj.entity.Author;
 import ru.bobrysheva.library_poj.entity.Book;
 import ru.bobrysheva.library_poj.repository.BookRepository;
+
+import java.util.Set;
+import java.util.stream.Collectors;
+
 
 @Service
 @RequiredArgsConstructor
 public class BookServiceImpl implements BookService {
 
     private final BookRepository bookRepository;
+    private final GenreService genreService;
+    private final AuthorService authorService;
+
     @Override
     public BookDto getByNameV1(String name) {
         Book book = bookRepository.findBookByName(name).orElseThrow();
@@ -40,12 +53,46 @@ public class BookServiceImpl implements BookService {
     return convertEntityToDto(book);
     }
 
+    @Override
+    public BookDto createBookDto(BookCreateDto bookCreateDto) {
+        Book book = bookRepository.save(convertDtoToEntity(bookCreateDto));
+        return convertEntityToDto(book);
+    }
+
+    @Override
+    public BookDto updateBookDto(BookUpdateDto bookUpdateDto) {
+
+        Set<Author> authors = bookUpdateDto.getAuthorsSurname().stream()
+                .map(authorService::findAuthorsBySurnameV3)
+                .flatMap(List::stream)
+                .map(this::authorService.convertAuthorDtoToEntity)
+                .collect(Collectors.toSet());
+
+        Book book = bookRepository.findById(bookUpdateDto.getId()).orElseThrow();
+        book.setName(bookUpdateDto.getName());
+        book.setGenre(genreService.getGenreByName(bookUpdateDto.getGenre()));
+        book.setAuthors(authors);
+
+        return convertEntityToDto(book);
+    }
+
+    @Override
+    public void deleteBook(Long id) {
+        bookRepository.deleteById(id);
+    }
+
+    private Book convertDtoToEntity (BookCreateDto bookCreateDto) {
+        return Book.builder()
+                .name(bookCreateDto.getName())
+                .genre(genreService.getGenreByName(bookCreateDto.getGenre()))
+                .build();
+    }
+
     private BookDto convertEntityToDto(Book book) {
         return BookDto.builder()
                 .id(book.getId())
                 .name(book.getName())
                 .genre(book.getGenre().getName())
-
                 .build();
     }
 }

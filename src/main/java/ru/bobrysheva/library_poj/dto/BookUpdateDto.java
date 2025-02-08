@@ -1,22 +1,19 @@
 package ru.bobrysheva.library_poj.dto;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.bobrysheva.library_poj.entity.Genre;
 
 import java.util.List;
 
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-@JsonInclude(JsonInclude.Include.NON_NULL)
-public class BookDto {
+@NoArgsConstructor
+public class BookUpdateDto {
     private Long id;
     private String name;
     private String genre;
-    private List<AuthorDto> authors;
+    private List <String> authorsSurname;
 }
