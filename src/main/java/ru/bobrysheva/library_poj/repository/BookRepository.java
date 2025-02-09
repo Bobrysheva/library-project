@@ -3,7 +3,7 @@ package ru.bobrysheva.library_poj.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
-import ru.bobrysheva.library_poj.entity.Book;
+import ru.bobrysheva.library_poj.model.Book;
 
 import java.util.Optional;
 

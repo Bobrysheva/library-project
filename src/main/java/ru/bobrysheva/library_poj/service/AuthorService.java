@@ -4,7 +4,7 @@ package ru.bobrysheva.library_poj.service;
 import ru.bobrysheva.library_poj.dto.AuthorCreateDto;
 import ru.bobrysheva.library_poj.dto.AuthorDto;
 import ru.bobrysheva.library_poj.dto.AuthorUpdateDto;
-import ru.bobrysheva.library_poj.entity.Author;
+import ru.bobrysheva.library_poj.model.Author;
 
 import java.util.List;
 

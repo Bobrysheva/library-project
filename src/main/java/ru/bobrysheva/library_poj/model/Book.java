@@ -1,4 +1,4 @@
-package ru.bobrysheva.library_poj.entity;
+package ru.bobrysheva.library_poj.model;
 
 import jakarta.persistence.*;
 import lombok.*;
