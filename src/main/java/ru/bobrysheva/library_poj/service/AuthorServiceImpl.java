@@ -11,7 +11,7 @@ import ru.bobrysheva.library_poj.dto.AuthorCreateDto;
 import ru.bobrysheva.library_poj.dto.AuthorDto;
 import ru.bobrysheva.library_poj.dto.AuthorUpdateDto;
 import ru.bobrysheva.library_poj.dto.BookDto;
-import ru.bobrysheva.library_poj.entity.Author;
+import ru.bobrysheva.library_poj.model.Author;
 import ru.bobrysheva.library_poj.repository.AuthorRepository;
 
 import java.util.List;

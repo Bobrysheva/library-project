@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import ru.bobrysheva.library_poj.dto.AuthorDto;
 import ru.bobrysheva.library_poj.dto.BookDto;
 import ru.bobrysheva.library_poj.dto.GenreDto;
-import ru.bobrysheva.library_poj.entity.Genre;
+import ru.bobrysheva.library_poj.model.Genre;
 import ru.bobrysheva.library_poj.repository.GenreRepository;
 
 import java.util.List;

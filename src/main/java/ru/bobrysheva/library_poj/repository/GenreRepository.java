@@ -1,8 +1,7 @@
 package ru.bobrysheva.library_poj.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import ru.bobrysheva.library_poj.entity.Book;
-import ru.bobrysheva.library_poj.entity.Genre;
+import ru.bobrysheva.library_poj.model.Genre;
 
 import java.util.Optional;
 

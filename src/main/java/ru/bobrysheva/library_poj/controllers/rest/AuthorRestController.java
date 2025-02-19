@@ -1,4 +1,4 @@
-package ru.bobrysheva.library_poj.controllers;
+package ru.bobrysheva.library_poj.controllers.rest;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-public class AuthorController {
+public class AuthorRestController {
 
     private final AuthorService authorService;
 
