@@ -1,2 +1,7 @@
-package ru.bobrysheva.library_poj.security;public enum Role {
+package ru.bobrysheva.library_poj.security;
+
+public enum Role {
+    ADMIN,
+    USER,
+
 }
