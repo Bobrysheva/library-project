@@ -22,11 +22,12 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
+                .csrf(httpSecurityCsrfConfigurer -> httpSecurityCsrfConfigurer.disable())
                 .authorizeHttpRequests((authorize) ->
                         authorize
-                                .requestMatchers(HttpMethod.POST,"/users").anonymous()
-                                .requestMatchers(HttpMethod.PUT, "/users").anonymous()
-                                .requestMatchers(HttpMethod.GET,"/users").hasRole(Role.ADMIN.name())
+                                .requestMatchers("/login").permitAll()
+                                .requestMatchers("/users/register").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/users").hasRole(Role.ADMIN.name())
                                 .anyRequest().authenticated())
                 .formLogin(Customizer.withDefaults())
                 .httpBasic(Customizer.withDefaults())
@@ -40,20 +41,4 @@ public class SecurityConfig {
 
         return new BCryptPasswordEncoder();
     }
-
-//    @Bean
-//    public UserDetailsService users() {
-//        PasswordEncoder encoder = passwordEncoder();
-//        UserDetails user = User.builder()
-//                .username("user")
-//                .password(encoder.encode("password"))
-//                .roles(String.valueOf(Role.USER))
-//                .build();
-//        UserDetails admin = User.builder()
-//                .username("admin")
-//                .password(encoder.encode("password"))
-//                .roles(String.valueOf(Role.USER), String.valueOf(Role.ADMIN))
-//                .build();
-//        return new InMemoryUserDetailsManager(user, admin);
-//    }
 }
