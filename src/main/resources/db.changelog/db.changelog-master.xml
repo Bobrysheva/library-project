@@ -9,5 +9,6 @@
     <include file="/db.changelog/changes/create_table_book_07.01.2025.xml"/>
     <include file="/db.changelog/changes/create_table_author_book_07.01.2025.xml"/>
     <include file="/db.changelog/changes/filling_tables_for_library_07.01.2025.xml"/>
-
+    <include file="/db.changelog/changes/create_table_user_20.02.2025.xml"/>
+    <include file="/db.changelog/changes/filling_users_20.02.2025.xml"/>
 </databaseChangeLog>
