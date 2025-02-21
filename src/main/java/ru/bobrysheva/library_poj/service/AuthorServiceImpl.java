@@ -1,3 +1,4 @@
+
 package ru.bobrysheva.library_poj.service;
 
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -14,6 +15,7 @@ import ru.bobrysheva.library_poj.dto.BookDto;
 import ru.bobrysheva.library_poj.model.Author;
 import ru.bobrysheva.library_poj.repository.AuthorRepository;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -31,34 +33,45 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
-    public List <AuthorDto> findAuthorsByNameV1(String name) {
+    public List <AuthorDto> getAuthorsByNameV1(String name) {
         List <Author> authors = authorRepository.findAuthorsByName(name);
         return authors.stream().map(this::convertToDto)
                 .collect(Collectors.toList());
     }
 
     @Override
-    public List<AuthorDto> findAuthorsByNameV2(String name) {
+    public List<AuthorDto> getAuthorsByNameV2(String name) {
         Optional<Author> authors = authorRepository.findAuthorByNameBySql(name);
         return authors.stream().map(this::convertToDto)
                 .collect(Collectors.toList());
     }
 
     @Override
-    public List<AuthorDto> findAuthorsBySurnameV3(String surname) {
+    public AuthorDto getAuthorsBySurnameV3(String surname) {
         Specification <Author> specification = Specification.where(new Specification<Author>() {
             @Override
             public Predicate toPredicate(Root<Author> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
                 return cb.equal(root.get("surname"), surname);
             }
         });
-        Optional<Author> authors = authorRepository.findAuthorBySurnameBySql(surname);
-        return authors.stream().map(this::convertToDto)
-                .collect(Collectors.toList());
+        Author author = authorRepository.findOne(specification).orElseThrow();
+        return convertEntityToDto(author);
     }
 
     @Override
-    public List<AuthorDto> findByBooks_Id (Long bookId) {
+    public Author getAuthorsBySurnameV4(String surname) {
+        Specification <Author> specification = Specification.where(new Specification<Author>() {
+            @Override
+            public Predicate toPredicate(Root<Author> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+                return cb.equal(root.get("surname"), surname);
+            }
+        });
+        Author author = authorRepository.findOne(specification).orElseThrow();
+        return author;
+    }
+
+    @Override
+    public List<AuthorDto> findByBooksId(Long bookId) {
         List <Author> authors = authorRepository.findByBooks_Id(bookId);
         return authors.stream().map(this::convertToDto).collect(Collectors.toList());
     }
@@ -85,7 +98,7 @@ public class AuthorServiceImpl implements AuthorService {
         authorRepository.deleteById(id);
     }
     @Override
-     public Author convertAuthorDtoToEntity (AuthorDto authorDto) {
+    public Author convertAuthorDtoToEntity (AuthorDto authorDto) {
         return Author.builder()
                 .name(authorDto.getName())
                 .surname(authorDto.getSurname())
@@ -134,5 +147,4 @@ public class AuthorServiceImpl implements AuthorService {
                 .surname(author.getSurname())
                 .build();
     }
-
 }

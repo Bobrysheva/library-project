@@ -3,16 +3,36 @@
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.23.xsd">
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.23.xsd">
 
     <changeSet id="create_table_author_book" author="Ekaterina_Bobrysheva">
-    <sql>
-        CREATE TABLE IF NOT EXISTS author_book(
-            book_id bigint NOT NULL,
-            author_id bigint NOT NULL,
-            FOREIGN KEY (book_id) REFERENCES book (id),
-            FOREIGN KEY (author_id) REFERENCES author (id)
-            );
-    </sql>
+        <sql>
+            CREATE TABLE IF NOT EXISTS author_book
+            (
+                book_id
+                bigint
+                NOT
+                NULL,
+                author_id
+                bigint
+                NOT
+                NULL,
+                FOREIGN
+                KEY
+            (
+                book_id
+            ) REFERENCES book
+            (
+                id
+            ),
+                FOREIGN KEY
+            (
+                author_id
+            ) REFERENCES author
+            (
+                id
+            )
+                );
+        </sql>
     </changeSet>
 </databaseChangeLog>

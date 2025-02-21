@@ -6,19 +6,28 @@ import ru.bobrysheva.library_poj.dto.AuthorDto;
 import ru.bobrysheva.library_poj.dto.AuthorUpdateDto;
 import ru.bobrysheva.library_poj.model.Author;
 
+import java.util.Collection;
 import java.util.List;
 
 public interface AuthorService {
 
-   AuthorDto getAuthorById (Long id);
+    AuthorDto getAuthorById(Long id);
 
-   List<AuthorDto> findAuthorsByNameV1(String name);
-   List<AuthorDto> findAuthorsByNameV2(String name);
-   List<AuthorDto> findAuthorsBySurnameV3(String surname);
+    List<AuthorDto> getAuthorsByNameV1(String name);
 
-   List<AuthorDto> findByBooks_Id (Long bookId);
-   AuthorDto createAuthor(AuthorCreateDto authorCreateDto);
-   AuthorDto updateAuthor(AuthorUpdateDto authorUpdateDto);
-   void deleteAuthor (Long id);
-   Author convertAuthorDtoToEntity (AuthorDto authorDto);
+    List<AuthorDto> getAuthorsByNameV2(String name);
+
+    AuthorDto getAuthorsBySurnameV3(String surname);
+
+    Author getAuthorsBySurnameV4(String surname);
+
+    List<AuthorDto> findByBooksId(Long bookId);
+
+    AuthorDto createAuthor(AuthorCreateDto authorCreateDto);
+
+    AuthorDto updateAuthor(AuthorUpdateDto authorUpdateDto);
+
+    void deleteAuthor(Long id);
+
+    Author convertAuthorDtoToEntity(AuthorDto authorDto);
 }
