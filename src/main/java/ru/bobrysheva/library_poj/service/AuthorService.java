@@ -15,10 +15,10 @@ public interface AuthorService {
    List<AuthorDto> findAuthorsByNameV1(String name);
    List<AuthorDto> findAuthorsByNameV2(String name);
    List<AuthorDto> findAuthorsBySurnameV3(String surname);
-
-   List<AuthorDto> findByBooks_Id (Long bookId);
+   List<Author> findAuthorsBySurname(String surname);
+   List<AuthorDto> findByBooksId (Long bookId);
    AuthorDto createAuthor(AuthorCreateDto authorCreateDto);
    AuthorDto updateAuthor(AuthorUpdateDto authorUpdateDto);
    void deleteAuthor (Long id);
-   Author convertAuthorDtoToEntity (AuthorDto authorDto);
+   AuthorDto convertEntityToDto (Author author);
 }

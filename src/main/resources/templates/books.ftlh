@@ -1,6 +1,7 @@
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="/books.css", type="text/css">
+    <link rel="stylesheet" href="/books.css" type="text/css">
+    <title>Все книги</title>
 </head>
 <body>
 <div class="container">
