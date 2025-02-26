@@ -9,11 +9,10 @@ import ru.bobrysheva.library_poj.service.BookService;
 @Controller
 @RequiredArgsConstructor
 public class BookController {
-
     private final BookService bookService;
 
     @GetMapping("/books")
-    String getBooksView(Model model) {
+    String getBooksView (Model model) {
         model.addAttribute("books", bookService.getAllBooks());
         return "books";
     }

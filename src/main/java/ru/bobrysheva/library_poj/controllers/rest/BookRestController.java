@@ -2,6 +2,7 @@
 package ru.bobrysheva.library_poj.controllers.rest;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.bobrysheva.library_poj.dto.BookCreateDto;
 import ru.bobrysheva.library_poj.dto.BookDto;

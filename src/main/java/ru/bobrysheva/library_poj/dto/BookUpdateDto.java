@@ -15,6 +15,6 @@ public class BookUpdateDto {
     private Long id;
     private String name;
     private String genre;
-
+  
     private List <String> authorsSurname;
 }

@@ -1,4 +1,3 @@
-
 package ru.bobrysheva.library_poj.controllers.rest;
 
 import lombok.RequiredArgsConstructor;
@@ -23,12 +22,17 @@ public class AuthorRestController {
 
     @GetMapping("/authors/name-1/{name}")
     List<AuthorDto> findAuthorsByName1(@PathVariable("name") String name) {
-        return authorService.getAuthorsByNameV1(name);
+        return authorService.findAuthorsByNameV1(name);
     }
 
     @GetMapping("/authors/name-2/{name}")
     List<AuthorDto> findAuthorsByName2(@PathVariable("name") String name) {
-        return authorService.getAuthorsByNameV2(name);
+        return authorService.findAuthorsByNameV2(name);
+    }
+
+    @GetMapping("/authors/name-3/{surname}")
+    List<AuthorDto> findAuthorsByName3(@PathVariable("surname") String surname) {
+        return authorService.findAuthorsBySurnameV3(surname);
     }
 
     @GetMapping("/authors/name-3/{surname}")
@@ -38,7 +42,7 @@ public class AuthorRestController {
 
     @GetMapping("/authors")
     List<AuthorDto> findByBooks_Id(@RequestParam Long id) {
-        return authorService.findByBooksId(id);
+        return authorService.findByBooks_Id(id);
     }
 
     @PostMapping("/authors/create")
@@ -46,11 +50,12 @@ public class AuthorRestController {
         return authorService.createAuthor(authorCreateDto);
     }
 
-    @PutMapping("/authors/update")
+    @PutMapping("authors/update")
     AuthorDto updateAuthor(@RequestBody AuthorUpdateDto authorUpdateDto) {
         return authorService.updateAuthor(authorUpdateDto);
     }
-    @DeleteMapping("/authors/{id}")
+    @DeleteMapping("/authors/delete/{id}")
+
     void deleteAuthor (@PathVariable("id") Long id) {
         authorService.deleteAuthor(id);
     }

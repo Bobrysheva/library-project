@@ -13,24 +13,24 @@ import java.util.Set;
 public class Book {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Setter
-    @Column(nullable = false)
+    @Column (nullable = false)
     private String name;
 
     @Setter
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "genre_id")
+    @ManyToOne (fetch = FetchType.LAZY)
+    @JoinColumn (name = "genre_id")
+
     private Genre genre;
 
     @Setter
     @ManyToMany
-    @JoinTable(
+    @JoinTable (
             name = "author_book",
-            inverseJoinColumns = @JoinColumn(name = "author_id", referencedColumnName = "id"),
-            joinColumns = @JoinColumn(name = "book_id", referencedColumnName = "id"))
-
-    private Set<Author> authors;
+            inverseJoinColumns = @JoinColumn (name = "author_id", referencedColumnName = "id"),
+            joinColumns = @JoinColumn(name = "book_id", referencedColumnName = "id") )
+    private Set <Author> authors;
 }

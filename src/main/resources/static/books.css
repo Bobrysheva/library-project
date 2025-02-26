@@ -21,7 +21,7 @@ h2 {
     padding: 25px;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 25px;
+margin-bottom: 25px;
 }
 
 .responsive-table .table-header {
@@ -39,7 +39,6 @@ h2 {
 .responsive-table .col-1 {
     flex-basis: 10%;
 }
-
 .responsive-table .col-2 {
     flex-basis: 40%;
 }

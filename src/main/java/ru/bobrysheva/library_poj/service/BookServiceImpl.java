@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import java.util.HashSet;
 import java.util.List;
 
-import ru.bobrysheva.library_poj.dto.AuthorDto;
 import ru.bobrysheva.library_poj.dto.BookCreateDto;
 import ru.bobrysheva.library_poj.dto.BookDto;
 import ru.bobrysheva.library_poj.dto.BookUpdateDto;
@@ -19,7 +18,6 @@ import ru.bobrysheva.library_poj.model.Author;
 import ru.bobrysheva.library_poj.model.Book;
 import ru.bobrysheva.library_poj.repository.BookRepository;
 
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -63,16 +61,21 @@ public class BookServiceImpl implements BookService {
     @Override
     public BookDto updateBookDto(BookUpdateDto bookUpdateDto) {
 
-        Set<Author> authors = new HashSet<>();
-        for (String authorSurname : bookUpdateDto.getAuthorsSurname())
-            authors.addAll(authorService.getAuthorsBySurnameV4(authorSurname));
+
+//        Set<Author> authors = bookUpdateDto.getAuthorsSurname().stream()
+//                .map(authorService::findAuthorsBySurnameV3)
+//                .flatMap(List::stream)
+//                .map(this::authorService.convertAuthorDtoToEntity)
+//                .collect(Collectors.toSet());
+
 
         Book book = bookRepository.findById(bookUpdateDto.getId()).orElseThrow();
         book.setName(bookUpdateDto.getName());
         book.setGenre(genreService.getGenreByName(bookUpdateDto.getGenre()));
-        book.setAuthors(authors);
-        Book savedBook = bookRepository.save(book);
-        return convertEntityToDto(savedBook);
+
+//        book.setAuthors(authors);
+
+        return convertEntityToDto(book);
     }
 
 
@@ -83,11 +86,12 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<BookDto> getAllBooks() {
-        List<Book> books = bookRepository.findAll();
+
+        List <Book> books = bookRepository.findAll();
         return books.stream().map(this::convertEntityToDto).collect(Collectors.toList());
     }
 
-    private Book convertDtoToEntity(BookCreateDto bookCreateDto) {
+    private Book convertDtoToEntity (BookCreateDto bookCreateDto) {
         return Book.builder()
                 .name(bookCreateDto.getName())
                 .genre(genreService.getGenreByName(bookCreateDto.getGenre()))
