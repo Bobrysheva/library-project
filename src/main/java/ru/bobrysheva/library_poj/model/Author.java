@@ -15,9 +15,11 @@ public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
+
     @Setter
     @Column(nullable = false)
     public String name;
+
     @Setter
     @Column(nullable = false)
     public String surname;
