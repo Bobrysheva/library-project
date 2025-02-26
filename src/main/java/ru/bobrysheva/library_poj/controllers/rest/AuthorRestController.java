@@ -35,6 +35,11 @@ public class AuthorRestController {
         return authorService.findAuthorsBySurnameV3(surname);
     }
 
+    @GetMapping("/authors/name-3/{surname}")
+    AuthorDto findAuthorsByName3(@PathVariable("surname") String surname) {
+        return authorService.getAuthorsBySurnameV3(surname);
+    }
+
     @GetMapping("/authors")
     List<AuthorDto> findByBooks_Id(@RequestParam Long id) {
         return authorService.findByBooks_Id(id);
@@ -50,9 +55,8 @@ public class AuthorRestController {
         return authorService.updateAuthor(authorUpdateDto);
     }
     @DeleteMapping("/authors/delete/{id}")
+
     void deleteAuthor (@PathVariable("id") Long id) {
         authorService.deleteAuthor(id);
     }
 }
-
-

@@ -10,7 +10,6 @@ import ru.bobrysheva.library_poj.repository.GenreRepository;
 
 import java.util.List;
 
-
 @Service
 @RequiredArgsConstructor
 public class GenreServiceImpl implements GenreService {
@@ -41,8 +40,6 @@ public class GenreServiceImpl implements GenreService {
 
                         .build()).toList();
 
-
         return GenreDto.builder().id(genre.getId()).name(genre.getName()).books(bookDtoList).build();
-
     }
 }
