@@ -13,21 +13,21 @@ public interface AuthorService {
 
     AuthorDto getAuthorById(Long id);
 
-    List<AuthorDto> getAuthorsByNameV1(String name);
-
-    List<AuthorDto> getAuthorsByNameV2(String name);
-
-    AuthorDto getAuthorsBySurnameV3(String surname);
-
-    Author getAuthorsBySurnameV4(String surname);
-
-    List<AuthorDto> findByBooksId(Long bookId);
-
-    AuthorDto createAuthor(AuthorCreateDto authorCreateDto);
-
-    AuthorDto updateAuthor(AuthorUpdateDto authorUpdateDto);
-
-    void deleteAuthor(Long id);
-
-    Author convertAuthorDtoToEntity(AuthorDto authorDto);
+   List<AuthorDto> findAuthorsByNameV1(String name);
+  
+   List<AuthorDto> findAuthorsByNameV2(String name);
+  
+   List<AuthorDto> findAuthorsBySurnameV3(String surname);
+  
+   List<Author> findAuthorsBySurname(String surname);
+  
+   List<AuthorDto> findByBooksId (Long bookId);
+  
+   AuthorDto createAuthor(AuthorCreateDto authorCreateDto);
+  
+   AuthorDto updateAuthor(AuthorUpdateDto authorUpdateDto);
+  
+   void deleteAuthor (Long id);
+  
+   AuthorDto convertEntityToDto (Author author);
 }

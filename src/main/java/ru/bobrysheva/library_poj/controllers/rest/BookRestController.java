@@ -2,7 +2,6 @@
 package ru.bobrysheva.library_poj.controllers.rest;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.bobrysheva.library_poj.dto.BookCreateDto;
 import ru.bobrysheva.library_poj.dto.BookDto;
@@ -30,17 +29,16 @@ public class BookRestController {
         return bookService.getByNameV3(name);
     }
 
-    @PostMapping("/books/create")
+    @PostMapping("/books")
     BookDto createBook (@RequestBody BookCreateDto bookCreateDto) {
         return  bookService.createBookDto(bookCreateDto);
     }
-
-    @PutMapping ("/books/update")
+    @PutMapping ("/books")
     BookDto updateBook (@RequestBody BookUpdateDto bookUpdateDto) {
         return bookService.updateBookDto(bookUpdateDto);
     }
-
-    @DeleteMapping ("/books/{id}")
+  
+    @DeleteMapping ("books/{id}")
     void  deleteBook (@PathVariable ("id") Long id) {
         bookService.deleteBook(id);
     }
