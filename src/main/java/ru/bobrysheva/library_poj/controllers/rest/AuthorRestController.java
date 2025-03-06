@@ -88,5 +88,3 @@ public class AuthorRestController {
         authorService.deleteAuthor(id);
     }
 }
-
-

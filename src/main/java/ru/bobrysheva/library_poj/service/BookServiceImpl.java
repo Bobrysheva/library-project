@@ -21,7 +21,6 @@ import ru.bobrysheva.library_poj.repository.BookRepository;
 
 import java.util.stream.Collectors;
 
-
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -66,6 +65,7 @@ public class BookServiceImpl implements BookService {
                 return cb.equal(root.get("name"), name);
             }
         });
+
         Optional<Book> book = bookRepository.findOne(specification);
         if (book.isPresent()) {
             log.info("Книга с названием {} успешно найдена", name);
@@ -102,6 +102,7 @@ public class BookServiceImpl implements BookService {
         return convertEntityToDto(savedBook);
     }
 
+
     @Override
     public void deleteBook(Long id) {
         log.info("Книга с идентификатором {} удалена", id);
@@ -112,6 +113,7 @@ public class BookServiceImpl implements BookService {
     public List<BookDto> getAllBooks() {
         List<Book> books = bookRepository.findAll();
         log.info("Перечень всех книг передан на отображение");
+
         return books.stream().map(this::convertEntityToDto).collect(Collectors.toList());
     }
 

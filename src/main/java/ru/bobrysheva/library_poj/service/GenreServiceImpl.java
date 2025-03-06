@@ -11,7 +11,6 @@ import ru.bobrysheva.library_poj.repository.GenreRepository;
 
 import java.util.List;
 
-
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -43,8 +42,6 @@ public class GenreServiceImpl implements GenreService {
 
                         .build()).toList();
 
-
         return GenreDto.builder().id(genre.getId()).name(genre.getName()).books(bookDtoList).build();
-
     }
 }

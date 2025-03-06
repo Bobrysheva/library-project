@@ -13,8 +13,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SecurityScheme(name = "library-users", scheme = "basic", type = SecuritySchemeType.HTTP, in = SecuritySchemeIn.HEADER)
 public class LibraryPojApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(LibraryPojApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(LibraryPojApplication.class, args);
+    }
 
 }

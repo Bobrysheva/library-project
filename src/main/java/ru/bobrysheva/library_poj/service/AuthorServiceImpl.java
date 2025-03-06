@@ -1,3 +1,4 @@
+
 package ru.bobrysheva.library_poj.service;
 
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -15,6 +16,7 @@ import ru.bobrysheva.library_poj.dto.BookDto;
 import ru.bobrysheva.library_poj.model.Author;
 import ru.bobrysheva.library_poj.repository.AuthorRepository;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -54,7 +56,7 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
-    public List<AuthorDto> findAuthorsByNameV2(String name) {
+    public List<AuthorDto> getAuthorsByNameV2(String name) {
         Optional<Author> authors = authorRepository.findAuthorByNameBySql(name);
         log.info("Поиск авторов по имени {}", name);
         List<AuthorDto> foundAuthors = authors.stream().map(this::convertToDto)
@@ -74,6 +76,7 @@ public class AuthorServiceImpl implements AuthorService {
                 return cb.equal(root.get("surname"), surname);
             }
         });
+      
         List<Author> authors = authorRepository.findAll(specification);
         if (authors.isEmpty()) {
             log.error("Авторов с фамилией {} в базе данных не нашлось", surname);
@@ -137,6 +140,7 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public void deleteAuthor(Long id) {
+
         Optional<Author> author = authorRepository.findById(id);
         if (author.isEmpty()) {
             log.error("Автор с идентификатором {} в базе данных не найден", id);

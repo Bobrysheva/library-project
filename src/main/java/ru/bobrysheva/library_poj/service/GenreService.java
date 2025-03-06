@@ -6,6 +6,7 @@ import ru.bobrysheva.library_poj.model.Genre;
 
 public interface GenreService {
 
-   GenreDto getGenreById (Long id);
-   Genre getGenreByName (String name);
+    GenreDto getGenreById(Long id);
+
+    Genre getGenreByName(String name);
 }

@@ -11,9 +11,10 @@ import java.util.Optional;
 
 
 @Repository
-public interface AuthorRepository extends JpaRepository<Author,Long>, JpaSpecificationExecutor<Author> {
+public interface AuthorRepository extends JpaRepository<Author, Long>, JpaSpecificationExecutor<Author> {
 
     List <Author> findAuthorsByName (String name);
+  
     List <Author> findByBooksId(Long bookId);
 
     @Query(nativeQuery = true, value = "SELECT * FROM AUTHOR WHERE name = ?")
