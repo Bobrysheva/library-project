@@ -56,7 +56,7 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
-    public List<AuthorDto> getAuthorsByNameV2(String name) {
+    public List<AuthorDto> findAuthorsByNameV2(String name) {
         Optional<Author> authors = authorRepository.findAuthorByNameBySql(name);
         log.info("Поиск авторов по имени {}", name);
         List<AuthorDto> foundAuthors = authors.stream().map(this::convertToDto)
